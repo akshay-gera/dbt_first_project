@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: listings
+        identifier: raw_listings
+        columns:
+          - name: room_type
+            # Putting a test here on the room type values which should ideally be than 4
+            tests:
+              - dbt_expectations.expect_column_distinct_count_to_equal:
+                  value: 4
+
+      - name: hosts
+        identifier: raw_hosts
+      
+      - name: reviews
+        identifier: raw_reviews
+      
+  
